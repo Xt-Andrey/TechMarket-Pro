@@ -1,24 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>My Web Page</title>
-        <link rel="stylesheet" href="styles.css" />
-        <script src="script.js" defer></script>
-        </head>
-    <body>
-        <header>
-            <h1>Welcome to My Web Page</h1>
-        </header>
-        <main>
-            <p>This is a sample web page to demonstrate HTML structure.</p>
-        </main>
-        <footer>
-            <p>&copy; 2024 My Web Page</p>
-        </footer>
-        </body>
-    </html>
-    </head>
-    <body>
-<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food Bites - Menú Online</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css)">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">Fast Food **Bites**</div>
+        <button class="cart-button" id="open-cart-btn">
+            <i class="fas fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)
+        </button>
+    </header>
+
+    <main class="menu-container">
+        <h1>¡Nuestro Delicioso Menú!</h1>
+        <p class="subtitle">Hecho con ingredientes frescos para ti.</p>
+        
+        <section class="products-grid" id="products-grid">
+            </section>
+
+    </main>
+
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-basket"></i> Tu Pedido</h2>
+            <button class="close-btn" id="close-cart-btn">&times;</button>
+        </div>
+        
+        <div class="cart-items-list" id="cart-items-list">
+            <p class="empty-cart-message">Tu carrito está vacío.</p>
+        </div>
+
+        <div class="cart-summary">
+            <p>Subtotal: <span id="cart-subtotal">$0.00</span></p>
+            <p>Envío: <span>$5.00</span></p>
+            <h3>Total: <span id="cart-total">$5.00</span></h3>
+            <button class="checkout-btn" id="checkout-btn">Finalizar Pedido</button>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

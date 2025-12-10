@@ -1,51 +1,49 @@
-# TechMarket-Pro
-📱 TechMiniShop - Tienda de Tecnología
-Una mini tienda online sencilla y responsiva para productos tecnológicos básicos.
+# 🍔 Fast Food Bites - Sistema de Pedidos Online
 
-📖 Descripción del Proyecto
-TechMiniShop es un proyecto web desarrollado exclusivamente con tecnologías nativas (HTML, CSS y JavaScript) sin el uso de frameworks ni librerías externas.
+## 🚀 Descripción del Proyecto
 
-El objetivo principal de este proyecto es demostrar habilidades fundamentales de desarrollo Front-End, incluyendo la manipulación del DOM, el diseño responsivo (Grid/Flexbox) y la lógica básica de un carrito de compras sin persistencia de datos (backend).
+"Fast Food Bites" es un proyecto de un sistema de pedidos online interactivo y moderno, diseñado para simular una experiencia de usuario fluida y atractiva. Este sistema permite a los clientes navegar por el menú, agregar productos al carrito, ver el total y simular el proceso de checkout.
 
-🚀 Funcionalidades
-El sitio cuenta con las siguientes características interactivas:
+El diseño está enfocado en la **usabilidad**, la **claridad** y una **estética visual profesional**, utilizando colores vibrantes y tipografía legible, acorde con la industria de comidas rápidas de alta calidad.
 
-🏠 Inicio: Banner de bienvenida con diseño atractivo.
+## ✨ Características Principales
 
-🛍️ Catálogo Dinámico: Renderizado de productos (Celulares, Laptops, Auriculares) mediante JavaScript.
+* **Menú Dinámico:** Visualización clara de categorías y productos.
+* **Carrito de Compras Interactivo:** Permite agregar, eliminar y actualizar cantidades.
+* **Cálculo de Totales:** Suma automáticamente los precios de los productos.
+* **Diseño Responsivo:** Adaptable a dispositivos móviles, tabletas y computadoras de escritorio.
 
-🛒 Carrito de Compras (Simulado):
+## 🛠️ Tecnologías Utilizadas
 
-Agregar productos al carrito.
+* **HTML5:** Estructura semántica del contenido.
+* **CSS3:** Estilos modernos (Flexbox y Grid para un layout profesional).
+* **JavaScript (Vanilla JS):** Lógica interactiva del carrito de compras.
 
-Contador de artículos en tiempo real.
+## 📂 Estructura de Archivos
+fast-food-bites/
+├── index.html
+├── README.md
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│   └── img/
+│       └── (Imágenes de productos, logo, etc.)
 
-Visualización de lista de productos seleccionados y cálculo del total.
 
-📩 Contacto: Formulario con validación básica de campos obligatorios usando JS.
+## 💡 Cómo Usar
 
-📱 Diseño Responsivo: Adaptable a móviles, tablets y escritorio.
+1.  Clonar el repositorio: `git clone [URL_DEL_REPOSITORIO]`
+2.  Abrir el archivo `index.html` en tu navegador web.
+3.  Comienza a interactuar con el menú haciendo clic en el botón "Añadir".
 
-🛠️ Tecnologías Utilizadas
-HTML5: Estructura semántica del sitio.
+---
 
-CSS3: Estilos personalizados, uso de Flexbox y CSS Grid para la maquetación.
+## 2. Archivo `index.html`
 
-JavaScript (ES6): Lógica del carrito, manejo de eventos y manipulación del DOM.
+Esta será la estructura principal con el menú y el carrito de compras.
 
-📂 Estructura del Proyecto
-🔧 Cómo ejecutar el proyecto
-Este proyecto no requiere instalación de dependencias ni servidores complejos.
+### 📄 Contenido de `index.html`
 
-Clona este repositorio o descarga el archivo ZIP.
-
-Ve a la carpeta del proyecto.
-
-Haz doble clic en el archivo index.html para abrirlo en tu navegador web favorito (Chrome, Firefox, Edge).
-
-🧩 Lógica del Código (Snippet)
-El catálogo de productos se genera a partir de un arreglo de objetos en JavaScript, lo que facilita agregar o quitar ítems:
-
-📄 Licencia
-Este es un proyecto de código abierto creado con fines educativos. Eres libre de usarlo y modificarlo.
 
