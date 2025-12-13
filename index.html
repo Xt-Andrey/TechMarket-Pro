@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="https://wa.me/573101234567" target="_blank" class="whatsapp-float" aria-label="Contáctanos por WhatsApp">
+    <a href="https://wa.me/573102402810" target="_blank" class="whatsapp-float" aria-label="Contáctanos por WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -25,9 +25,24 @@
             <div class="nav-links">
                 <a href="#products-grid">Menú</a> 
                 <a href="#about-us">Nosotros</a>
-                <a href="#contact-form">Contacto</a>
+                <a href="#contact-us">Contacto</a>
+                <button class="suggestion-button" id="open-suggestion-btn">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Sugerencias</span>
+                </button>
+                <button class="login-button" id="open-login-btn-desktop">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Iniciar Sesión</span>
+                </button>
             </div>
             <div class="cart-btn-wrapper">
+                <button class="cart-button suggestion-button-mobile" id="open-suggestion-btn-mobile">
+                    <i class="fas fa-comment-dots"></i>
+                </button>
+                <button class="cart-button login-button-mobile" id="open-login-btn-mobile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Acceso</span>
+                </button>
                 <button class="cart-button" id="open-cart-btn">
                     <i class="fas fa-shopping-cart"></i>
                     <span>Carrito</span>
@@ -55,7 +70,7 @@
             <div class="slide promo-2">
                 <div class="promo-text">
                     <h3>🍟 Combo Familiar Deluxe</h3>
-                    <p>4 Menús, papas grandes y 2 malteadas por solo $39.99!</p>
+                    <p>4 Menús, papas grandes y 2 malteadas por solo $39.99! (Precio simulado)</p>
                 </div>
                 <button class="promo-btn" data-promo-id="2">¡Pedir Ahora!</button>
             </div>
@@ -65,6 +80,7 @@
             <span class="dot" data-slide="1"></span>
         </div>
     </section>
+
     <section class="products-section">
         <div class="section-header">
             <h2 class="section-title">Nuestro Menú Exclusivo</h2>
@@ -73,7 +89,7 @@
         </div>
     </section>
     
-    <section class="info-section">
+    <section class="info-section" id="contact-us">
         <div class="info-content-wrapper">
             <div class="info-card" id="about-us">
                 <h2 class="section-title">Acerca de Nosotros</h2>
@@ -82,35 +98,17 @@
 
                 <h2 class="section-title contact-title">Contáctanos</h2>
                 <div class="contact-details">
-                    <p><i class="fas fa-phone-alt"></i> **Teléfono:** +57 310 123 4567</p>
-                    <p><i class="fas fa-envelope"></i> **Email:** <a href="mailto:contacto@ffbites.com">contacto@ffbites.com</a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> **Dirección:** Cra 5 # 10-20, Ciudad Ejemplo, CO</p>
+                    <p><i class="fas fa-phone-alt"></i> **Teléfono:** +57 310 240 2810</p>
+                    <p><i class="fas fa-envelope"></i> **Email:** <a href="mailto:andreygalvis6002@gmail.com">andreygalvis6002@gmail.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> **Dirección:** Cra 5 # 10-20, Ciudad Ocaña, NS - Colombia</p>
                 </div>
                 <div class="social-icons">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/tumarca" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/tumarca" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/tumarca" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
 
-            <div class="info-card form-card" id="contact-form">
-                <h2 class="section-title">Envíanos un Mensaje</h2>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Nombre Completo</label>
-                        <input type="text" id="name" name="name" required placeholder="Tu nombre...">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Tu consulta..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Enviar Consulta</button>
-                </form>
-            </div>
             </div>
     </section>
 
@@ -129,14 +127,85 @@
 
         <div class="cart-summary">
             <p><span>Subtotal:</span> <span id="cart-subtotal">$0.00</span></p>
-            <p><span>Envío:</span> <span>$5.00</span></p>
-            <h3><span>Total:</span> <span id="cart-total">$5.00</span></h3>
+            <p><span>Envío:</span> <span id="cart-shipping-price">$9,000.00</span></p>
+            <h3><span>Total:</span> <span id="cart-total">$9,000.00</span></h3>
             <button class="checkout-btn" id="checkout-btn">
                 <i class="fas fa-check-circle"></i> Finalizar Pedido
             </button>
         </div>
     </aside>
+    
+    <div class="user-modal" id="user-modal">
+        <div class="user-modal-content">
+            <div class="user-modal-header">
+                <h3><i class="fas fa-lock"></i> Acceso de Usuario</h3>
+                <button class="close-btn" id="close-user-modal">×</button>
+            </div>
 
+            <div class="user-tabs">
+                <button class="tab-button active" data-tab="login">Iniciar Sesión</button>
+                <button class="tab-button" data-tab="register">Registrarme</button>
+            </div>
+
+            <div class="tab-content" id="login-form-tab">
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Correo Electrónico</label>
+                        <input type="email" id="login-email" required placeholder="tu.email@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Contraseña</label>
+                        <input type="password" id="login-password" required placeholder="Ingresa tu contraseña">
+                    </div>
+                    <button type="submit" class="submit-btn full-width">Acceder</button>
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                </form>
+            </div>
+
+            <div class="tab-content hidden" id="register-form-tab">
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-name">Nombre Completo</label>
+                        <input type="text" id="register-name" required placeholder="Tu nombre y apellido">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Correo Electrónico</label>
+                        <input type="email" id="register-email" required placeholder="tu.email@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Contraseña</label>
+                        <input type="password" id="register-password" required placeholder="Mínimo 6 caracteres">
+                    </div>
+                    <button type="submit" class="submit-btn full-width">Crear Cuenta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="user-modal suggestion-modal" id="suggestion-modal">
+        <div class="user-modal-content">
+            <div class="user-modal-header">
+                <h3><i class="fas fa-lightbulb"></i> Envía tu Sugerencia</h3>
+                <button class="close-btn" id="close-suggestion-modal">×</button>
+            </div>
+
+            <form id="suggestion-form" class="auth-form">
+                <div class="form-group">
+                    <label for="suggestion-email">Correo Electrónico</label>
+                    <input type="email" id="suggestion-email" required placeholder="tu.email@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="suggestion-subject">Asunto</label>
+                    <input type="text" id="suggestion-subject" required placeholder="Ej. Nuevo producto, error en app...">
+                </div>
+                <div class="form-group">
+                    <label for="suggestion-message">Mensaje</label>
+                    <textarea id="suggestion-message" rows="5" required placeholder="Detalla tu sugerencia aquí..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn full-width">Enviar Sugerencia</button>
+            </form>
+        </div>
+    </div>
     <div class="overlay" id="overlay"></div>
 
     <footer class="footer">
@@ -158,7 +227,7 @@
                     <li><a href="#about-us">Quiénes Somos</a></li>
                     <li><a href="#">Sostenibilidad</a></li>
                     <li><a href="#">Eventos</a></li>
-                    <li><a href="#">Contáctanos (PQRS)</a></li>
+                    <li><a href="#contact-us">Contáctanos (PQRS)</a></li>
                 </ul>
             </div>
 
@@ -179,6 +248,7 @@
             <p class="tech-info">Desarrollado con HTML, CSS y JavaScript.</p>
         </div>
     </footer>
+
     <script src="assets/js/script.js"></script>
 </body>
 </html>

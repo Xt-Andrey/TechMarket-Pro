@@ -16,6 +16,7 @@
     --purple: #8b5cf6;
     --pink: #ec4899;
     --cyan: #06b6d4;
+    --success: #3DDC84; 
 }
 
 body {
@@ -26,6 +27,7 @@ body {
     position: relative;
 }
 
+/* Efecto de fondo con degradados y animación (Glassmorphism) */
 body::before {
     content: '';
     position: fixed;
@@ -43,7 +45,8 @@ body::before {
 
 @keyframes bgShift {
     0% { transform: scale(1) rotate(0deg); }
-    100% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
 }
 
 /* ================================================ */
@@ -112,6 +115,8 @@ body::before {
 
 .cart-btn-wrapper {
     position: relative;
+    display: flex;
+    gap: 1rem;
 }
 
 .cart-button {
@@ -166,8 +171,15 @@ body::before {
     box-shadow: 0 0 20px rgba(255,255,255,0.5);
 }
 
+/* Animación para el contador del carrito (usada en JS) */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 /* ================================================ */
-/* NEW NAVBAR LINKS */
+/* NEW NAVBAR LINKS & LOGIN/SUGGESTION BUTTONS */
 /* ================================================ */
 
 .nav-links {
@@ -176,6 +188,7 @@ body::before {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    align-items: center;
 }
 
 .nav-links a {
@@ -206,6 +219,76 @@ body::before {
 
 .nav-links a:hover::after {
     transform: scaleX(1);
+}
+
+/* Estilo del botón Iniciar Sesión (Desktop) */
+#open-login-btn-desktop, .suggestion-button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+#open-login-btn-desktop:hover {
+    color: var(--cyan);
+}
+
+#open-login-btn-desktop::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--cyan);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+#open-login-btn-desktop:hover::after {
+    transform: scaleX(1);
+}
+
+/* Estilos para el botón de Sugerencias */
+.suggestion-button {
+    color: rgba(255, 255, 255, 0.8);
+}
+.suggestion-button:hover {
+    color: var(--success);
+}
+.suggestion-button::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--success);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+.suggestion-button:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* Ocultar botón de login en móvil por defecto */
+.login-button-mobile {
+    display: none; 
+}
+/* Ocultar botón de sugerencias en móvil por defecto */
+.suggestion-button-mobile {
+    display: none; 
 }
 
 /* ================================================ */
@@ -282,23 +365,25 @@ body::before {
 
 /* ================================================ */
 /* PROMOCIONES SLIDER (CARRUSEL) */
+/* Mejorando el espacio para que no se vea tan pequeño */
 /* ================================================ */
 
 .promotions-slider {
     position: relative;
     width: 100%;
-    max-width: 1200px;
-    height: 180px; /* Altura del carrusel */
+    max-width: 1400px; /* Más ancho */
+    height: 250px; /* Mayor altura */
     margin: 4rem auto;
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    z-index: 50; /* Para estar sobre el fondo pero bajo el navbar */
+    border-radius: 25px; 
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    z-index: 50; 
+    border: 3px solid var(--accent);
 }
 
 .slider-track {
     display: flex;
-    width: 200%; /* El doble de ancho para 2 slides */
+    width: 200%; 
     height: 100%;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -309,7 +394,7 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 3rem;
+    padding: 0 5rem; /* Más padding */
     color: white;
     position: relative;
     overflow: hidden;
@@ -322,7 +407,7 @@ body::before {
 
 .promo-2 {
     background: linear-gradient(90deg, #FF6B35 0%, #FFD23F 100%);
-    color: var(--darker); /* Texto oscuro para fondo claro */
+    color: var(--darker); 
 }
 
 .promo-1::before, .promo-2::before {
@@ -332,80 +417,62 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.3;
+    opacity: 0.2; 
 }
 
-/* Se usan URLs de ejemplo para simular las imágenes */
 .promo-1::before {
-    background: url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=600&h=180&fit=crop') no-repeat center center;
+    background: url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=1400&h=250&fit=crop') no-repeat center center;
     background-size: cover;
 }
 .promo-2::before {
-    background: url('https://images.unsplash.com/photo-1582234032549-b006c05a18a8?q=80&w=600&h=180&fit=crop') no-repeat center center;
+    background: url('https://images.unsplash.com/photo-1582234032549-b006c05a18a8?q=80&w=1400&h=250&fit=crop') no-repeat center center;
     background-size: cover;
 }
 
 .promo-text {
     z-index: 10;
+    max-width: 60%; 
 }
 
 .promo-text h3 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    font-size: 2.5rem; 
+    font-weight: 900;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 .promo-text p {
-    font-size: 1rem;
-    font-weight: 300;
+    font-size: 1.2rem; 
+    font-weight: 400;
 }
 
 .promo-btn {
-    background: white;
-    color: var(--dark);
+    background: linear-gradient(135deg, var(--primary), var(--pink));
+    color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 1rem 2.5rem; 
     border-radius: 50px;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.1rem; 
     cursor: pointer;
     z-index: 10;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
 }
 
 .promo-btn:hover {
     transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
 }
 
 /* Dots de navegación */
 .slider-dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 15;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.dot.active {
-    background: var(--accent);
-    transform: scale(1.2);
+    bottom: 20px;
 }
 
 
 /* ================================================ */
-/* PRODUCTS SECTION */
+/* PRODUCTS SECTION (ORGANIZADO) */
 /* ================================================ */
 .products-section {
     position: relative;
@@ -432,9 +499,10 @@ body::before {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2.5rem;
     perspective: 1000px;
+    align-items: stretch;
 }
 
 .product-card {
@@ -447,6 +515,10 @@ body::before {
     position: relative;
     transform-style: preserve-3d;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    
+    display: flex;
+    flex-direction: column; 
+    height: 100%;
 }
 
 .product-card::before {
@@ -474,7 +546,7 @@ body::before {
 
 .product-image-wrapper {
     position: relative;
-    height: 280px;
+    height: 250px; 
     overflow: hidden;
     background: linear-gradient(135deg, #1a1a2e, #2d2d44);
 }
@@ -509,11 +581,6 @@ body::before {
     z-index: 10;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
 .product-glow {
     position: absolute;
     bottom: -50%;
@@ -535,6 +602,9 @@ body::before {
     padding: 2rem;
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
 }
 
 .product-name {
@@ -551,6 +621,7 @@ body::before {
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-weight: 300;
+    flex-grow: 1; 
 }
 
 .product-footer {
@@ -558,6 +629,7 @@ body::before {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    margin-top: auto; 
 }
 
 .product-price {
@@ -618,13 +690,14 @@ body::before {
 }
 
 /* ================================================ */
-/* CART SIDEBAR */
+/* CART SIDEBAR (Existente) */
 /* ================================================ */
 .cart-sidebar {
     position: fixed;
     top: 0;
-    right: -500px;
+    right: -500px; 
     width: 480px;
+    max-width: 100%; 
     height: 100vh;
     background: rgba(26, 26, 46, 0.95);
     backdrop-filter: blur(30px);
@@ -683,6 +756,7 @@ body::before {
     padding: 2rem;
 }
 
+/* Estilos de la barra de desplazamiento */
 .cart-items-list::-webkit-scrollbar {
     width: 8px;
 }
@@ -886,7 +960,7 @@ body::before {
     height: 60px;
     bottom: 30px;
     right: 30px;
-    background-color: #25d366; /* Color oficial de WhatsApp */
+    background-color: #25d366; 
     color: #FFF;
     border-radius: 50px;
     text-align: center;
@@ -903,7 +977,7 @@ body::before {
 }
 
 /* ================================================ */
-/* INFO & CONTACT SECTION */
+/* INFO & CONTACT SECTION (ORGANIZADO) */
 /* ================================================ */
 
 .info-section {
@@ -916,21 +990,27 @@ body::before {
 
 .info-content-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 4rem;
+    /* AJUSTE CLAVE: Como eliminamos la segunda tarjeta, esta grilla se centra y se limita el ancho 
+       para que la información no se estire demasiado en pantallas grandes. */
+    grid-template-columns: 1fr; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    gap: 0;
     align-items: stretch;
 }
 
 .info-card {
-    background: rgba(255, 255, 255, 0.05); /* Glassmorphism ligero */
+    background: rgba(255, 255, 255, 0.05); 
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 25px;
     padding: 3rem;
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
     transition: transform 0.4s ease-out;
+    
     display: flex;
     flex-direction: column;
+    height: 100%; 
 }
 
 .info-card:hover {
@@ -955,6 +1035,10 @@ body::before {
 }
 
 /* Estilos de Contacto */
+.contact-details {
+    flex-grow: 1;
+}
+
 .contact-details p {
     display: flex;
     align-items: center;
@@ -978,7 +1062,9 @@ body::before {
 
 /* Iconos Sociales */
 .social-icons {
-    margin-top: 2rem;
+    margin-top: auto; 
+    padding-top: 1.5rem; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
     display: flex;
     gap: 1.5rem;
 }
@@ -994,10 +1080,9 @@ body::before {
     transform: scale(1.15);
 }
 
-/* Ajuste de Contacto para el nuevo layout */
+/* Ajuste de Contacto */
 #about-us {
-    /* Mover el contenido de contacto dentro de 'Acerca de Nosotros' */
-    padding-bottom: 0; 
+    padding-bottom: 3rem; 
 }
 
 .contact-title {
@@ -1006,69 +1091,14 @@ body::before {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ================================================ */
-/* CONTACT FORM STYLES (Formulario) */
-/* ================================================ */
-
-/* Asegura que el formulario tenga el estilo de tarjeta (info-card) */
-.form-card {
-    display: block; /* Desactiva flex para que los elementos de formulario fluyan verticalmente */
-}
-
-.contact-form .form-group {
-    margin-bottom: 1.5rem;
-}
-
-.contact-form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--light);
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05); /* Campo de entrada Glassmorphism */
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
-}
-
-.submit-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 15px;
-    color: var(--dark);
-    font-size: 1.1rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-}
-
-.submit-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+/* ELIMINACIÓN DE ESTILOS DE COMPONENTES ELIMINADOS */
+.form-card,
+.suggestion-title,
+.suggestion-content,
+.suggestion-image,
+.suggestion-note,
+#open-suggestion-btn-card {
+    display: none !important; 
 }
 
 /* ================================================ */
@@ -1076,8 +1106,8 @@ body::before {
 /* ================================================ */
 
 .footer {
-    background: var(--dark); /* Color oscuro similar al fondo de El Corral */
-    padding: 3rem 2rem 1rem; /* Más padding arriba */
+    background: var(--dark); 
+    padding: 3rem 2rem 1rem; 
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
@@ -1087,7 +1117,7 @@ body::before {
     max-width: 1400px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas grandes */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 3rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1097,7 +1127,7 @@ body::before {
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    color: var(--accent); /* Color de acento para los títulos de columna */
+    color: var(--accent); 
 }
 
 .footer-column ul {
@@ -1145,7 +1175,178 @@ body::before {
 }
 
 /* ================================================ */
-/* RESPONSIVE */
+/* MODALES (Usuario y Sugerencias) */
+/* Asegurando alineación y orden en los formularios */
+/* ================================================ */
+
+.user-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); 
+    width: 90%;
+    max-width: 450px;
+    background: var(--dark);
+    border-radius: 20px;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.user-modal.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.user-modal-content {
+    padding: 2rem;
+}
+
+.user-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.user-modal-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Estilo específico para el modal de sugerencias */
+.suggestion-modal .user-modal-header h3 {
+    color: var(--success);
+}
+
+.user-modal-header .close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+}
+
+/* Navegación por Pestañas */
+.user-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.tab-button.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* Formulario de Autenticación y Sugerencias: Asegurando alineación y espaciado */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaciado correcto entre campos */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espaciado entre label y input */
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--light);
+}
+
+.auth-form .form-group input, 
+.auth-form .form-group textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s;
+    resize: vertical;
+}
+
+.auth-form .form-group input:focus,
+.auth-form .form-group textarea:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.4);
+}
+
+/* Estilo para el botón de Submit general */
+.submit-btn {
+    background: linear-gradient(135deg, var(--primary), var(--pink));
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--purple));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+}
+
+.auth-form .submit-btn {
+    margin-top: 1rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.forgot-password {
+    text-align: center;
+    color: var(--cyan);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: var(--light);
+}
+
+.hidden {
+    display: none;
+}
+
+/* ================================================ */
+/* RESPONSIVE (Optimizaciones finales) */
 /* ================================================ */
 @media (max-width: 1024px) {
     .products-grid {
@@ -1154,46 +1355,104 @@ body::before {
     }
 }
 
-@media (max-width: 900px) { /* Nuevo responsive para footer */
+@media (max-width: 900px) { 
     .footer-columns-wrapper {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 @media (max-width: 768px) {
     .navbar-glass {
+        display: grid;
+        grid-template-columns: 1fr auto auto auto; 
         padding: 1rem;
+        gap: 0.5rem;
     }
 
     .logo {
         font-size: 1.3rem;
     }
 
+    /* Ocultar elementos de Desktop */
+    .nav-links {
+        display: none; 
+    }
+    #open-login-btn-desktop, .suggestion-button {
+        display: none;
+    }
+
+    /* Mostrar y estilizar botones para Móvil */
+    .login-button-mobile {
+        display: flex; 
+        order: 3; 
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 1.4rem;
+        color: var(--cyan);
+        box-shadow: none;
+        transition: color 0.3s;
+    }
+    .login-button-mobile:hover {
+        color: var(--light);
+        transform: none; 
+        box-shadow: none;
+    }
+
+    .suggestion-button-mobile {
+        display: flex; 
+        order: 2; 
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 1.4rem;
+        color: var(--success);
+        box-shadow: none;
+        transition: color 0.3s;
+    }
+
+    .cart-btn-wrapper {
+        order: 4; 
+        gap: 0.5rem;
+    }
+    .cart-button span {
+        display: none; 
+    }
+    
     .cart-button {
         padding: 0.7rem 1.2rem;
         font-size: 0.9rem;
+        gap: 0.2rem;
     }
-    
-    .nav-links {
-        display: none; /* Ocultar en móviles */
+    #cart-count {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
     }
 
     .hero {
         padding: 6rem 1.5rem 3rem;
     }
 
-    .promotions-slider { /* Responsive del Carrusel */
-        height: 150px;
-        margin: 2rem auto;
+    .promotions-slider { 
+        height: 180px; 
+        margin: 2rem 1rem;
+        border-width: 2px;
     }
     .slide {
         padding: 0 1rem;
+        flex-direction: column; 
+        text-align: center;
+        justify-content: space-around;
+        padding: 1rem;
     }
     .promo-text h3 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
     }
     .promo-text p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
     }
     .promo-btn {
         padding: 8px 15px;
@@ -1219,11 +1478,16 @@ body::before {
     }
     
     .info-content-wrapper {
-        grid-template-columns: 1fr;
+        /* Permite que ocupe el ancho disponible sin minmax agresivo */
+        max-width: 100%; 
     }
 
     .info-card {
         padding: 2rem;
+    }
+
+    .contact-details p {
+        font-size: 1rem;
     }
     
     .footer {
@@ -1231,9 +1495,9 @@ body::before {
     }
 }
 
-@media (max-width: 550px) { /* Nuevo responsive para footer */
+@media (max-width: 550px) { 
     .footer-columns-wrapper {
-        grid-template-columns: 1fr; /* 1 columna en móviles */
+        grid-template-columns: 1fr; 
         text-align: center;
     }
     .footer-column {

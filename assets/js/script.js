@@ -1,11 +1,11 @@
 // --- DATOS DEL MENÚ (URLs de imágenes de Unsplash como ejemplo) ---
 const menuItems = [
-    { id: 1, name: 'Hamburguesa Clásica Premium', price: 8.50, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop', description: 'Carne Angus, lechuga fresca, tomate orgánico y nuestra salsa secreta.', badge: 'Popular' },
-    { id: 2, name: 'Papas Fritas Artesanales', price: 3.00, image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop', description: 'Papas cortadas a mano, fritas en aceite premium con sal marina.' },
-    { id: 3, name: 'Doble Queso Deluxe', price: 12.00, image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop', description: 'Doble carne premium, queso madurado, pepinillos y aderezo especial.', badge: 'Nuevo' },
-    { id: 4, name: 'Malteada Vainilla Bourbon', price: 4.50, image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&h=400&fit=crop', description: 'Malteada cremosa de vainilla con un toque de sabor a bourbon.' },
-    { id: 5, name: 'Nuggets de Pollo Crujientes (x6)', price: 6.50, image: 'https://images.unsplash.com/photo-1544976767-f703648d70c4?w=600&h=400&fit=crop', description: 'Pollo de corral, empanizado en panko japonés. Pídelo con tu salsa favorita.' },
-    { id: 6, name: 'Ensalada Premium con Pollo', price: 9.50, image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop', description: 'Ensalada fresca con pollo a la parrilla, aderezo cítrico y nueces.', badge: 'Fit' }
+    { id: 1, name: 'Hamburguesa Clásica Premium', price: 34000.00, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop', description: 'Carne Angus, lechuga fresca, tomate orgánico y nuestra salsa secreta.', badge: 'Popular' },
+    { id: 2, name: 'Papas Fritas Artesanales', price: 12000.00, image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop', description: 'Papas cortadas a mano, fritas en aceite premium con sal marina.' },
+    { id: 3, name: 'Doble Queso Deluxe', price: 48000.00, image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop', description: 'Doble carne premium, queso madurado, pepinillos y aderezo especial.', badge: 'Nuevo' },
+    { id: 4, name: 'Malteada Vainilla Bourbon', price: 18000.00, image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&h=400&fit=crop', description: 'Malteada cremosa de vainilla con un toque de sabor a bourbon.' },
+    { id: 5, name: 'Nuggets de Pollo Crujientes (x6)', price: 26000.00, image: 'https://images.unsplash.com/photo-1626075908129-9e8a5b28b746?w=600&h=400&fit=crop', description: 'Pollo de corral, empanizado en panko japonés. Pídelo con tu salsa favorita.' }, // CORREGIDA: URL de imagen
+    { id: 6, name: 'Ensalada Premium con Pollo', price: 38000.00, image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop', description: 'Ensalada fresca con pollo a la parrilla, aderezo cítrico y nueces.', badge: 'Fit' }
 ];
 
 // --- ESTADO GLOBAL ---
@@ -22,13 +22,31 @@ const cartCountElement = document.getElementById('cart-count');
 const cartSubtotalElement = document.getElementById('cart-subtotal');
 const cartTotalElement = document.getElementById('cart-total');
 const checkoutBtn = document.getElementById('checkout-btn');
-const contactForm = document.querySelector('.contact-form');
 
-// --- LÓGICA DEL CARRUSEL (NUEVA) ---
+// --- CONSTANTES DEL DOM (MODAL DE USUARIO) ---
+const userModal = document.getElementById('user-modal');
+const openLoginBtnDesktop = document.getElementById('open-login-btn-desktop');
+const openLoginBtnMobile = document.getElementById('open-login-btn-mobile');
+const closeUserModalBtn = document.getElementById('close-user-modal');
+const tabButtons = document.querySelectorAll('.user-tabs .tab-button');
+const loginFormTab = document.getElementById('login-form-tab');
+const registerFormTab = document.getElementById('register-form-tab');
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+
+// --- CONSTANTES DEL DOM (MODAL DE SUGERENCIAS) ---
+const suggestionModal = document.getElementById('suggestion-modal');
+const openSuggestionBtn = document.getElementById('open-suggestion-btn');
+const openSuggestionBtnMobile = document.getElementById('open-suggestion-btn-mobile');
+const closeSuggestionModalBtn = document.getElementById('close-suggestion-modal');
+const suggestionForm = document.getElementById('suggestion-form');
+
+
+// --- LÓGICA DEL CARRUSEL (EXISTENTE) ---
 const sliderTrack = document.getElementById('slider-track');
 const sliderDots = document.getElementById('slider-dots');
 let currentSlide = 0;
-const totalSlides = 2; // Tenemos 2 promociones
+const totalSlides = 2; 
 let slideInterval;
 
 function moveToSlide(index) {
@@ -36,12 +54,11 @@ function moveToSlide(index) {
     if (index < 0) index = totalSlides - 1;
 
     currentSlide = index;
-    const offset = -index * 50; // Mueve el 50% para cada slide (porque hay 2 slides y el track es del 200%)
+    const offset = -index * 50; 
     if (sliderTrack) {
         sliderTrack.style.transform = `translateX(${offset}%)`;
     }
 
-    // Actualizar los dots
     if (sliderDots) {
         const dots = sliderDots.querySelectorAll('.dot');
         dots.forEach((dot, i) => {
@@ -51,26 +68,23 @@ function moveToSlide(index) {
 }
 
 function startSlider() {
-    // Solo iniciar si el carrusel existe en el HTML
     if (sliderTrack) {
         slideInterval = setInterval(() => {
             moveToSlide(currentSlide + 1);
-        }, 4000); // Cambia cada 4 segundos
+        }, 4000); 
     }
 }
 
 function handleDotClick(e) {
     if (e.target.classList.contains('dot')) {
-        clearInterval(slideInterval); // Detener el auto-slide
+        clearInterval(slideInterval); 
         const slideIndex = parseInt(e.target.dataset.slide);
         moveToSlide(slideIndex);
-        startSlider(); // Reiniciar el auto-slide
+        startSlider(); 
     }
 }
 
 // --- UTILIDADES ---
-
-// Crea partículas en el hero (Efecto visual)
 function createParticles() {
     const heroParticles = document.querySelector('.hero-particles');
     for(let i = 0; i < 30; i++) {
@@ -84,11 +98,10 @@ function createParticles() {
     }
 }
 
-// Función para formatear el precio a moneda
-const formatPrice = (price) => `$${price.toFixed(2)}`;
+// CAMBIO: Formato de precio a COP (Pesos Colombianos) - Se usa el símbolo '$' por convención
+const formatPrice = (price) => `$${price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 
-// --- LÓGICA DEL MENÚ ---
-
+// --- LÓGICA DEL MENÚ (EXISTENTE) ---
 function renderMenu() {
     productsGrid.innerHTML = '';
     menuItems.forEach(item => {
@@ -116,12 +129,11 @@ function renderMenu() {
     });
 }
 
-// --- LÓGICA DEL CARRITO ---
-
+// --- LÓGICA DEL CARRITO (EXISTENTE) ---
 function openCart() {
     cartSidebar.classList.add('open');
     overlay.classList.add('visible');
-    document.body.style.overflow = 'hidden'; // Evita scroll en el fondo
+    document.body.style.overflow = 'hidden'; 
 }
 
 function closeCart() {
@@ -177,7 +189,6 @@ function addToCart(productId) {
 
     renderCart();
     
-    // Animación para el contador del carrito
     const countEl = document.getElementById('cart-count');
     countEl.style.animation = 'none';
     setTimeout(() => {
@@ -208,41 +219,219 @@ function changeQuantity(productId, type) {
 
 function updateCartTotals() {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    // Asumimos $5.00 de envío si hay productos, $0.00 si está vacío.
-    const shipping = cart.length > 0 ? 5.00 : 0.00; 
+    // Precio de envío a COP ($9,000)
+    const shipping = cart.length > 0 ? 9000.00 : 0.00; 
     const total = subtotal + shipping;
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    const cartShippingElement = document.getElementById('cart-shipping-price');
+    if (cartShippingElement) {
+        cartShippingElement.textContent = formatPrice(shipping);
+    }
 
     cartSubtotalElement.textContent = formatPrice(subtotal);
     cartTotalElement.textContent = formatPrice(total);
     cartCountElement.textContent = totalItems;
 }
 
-// --- LISTENERS DE EVENTOS ---
+// --- LÓGICA DE PROMOCIONES (Ajustada según solicitud) ---
+function handlePromoClick(e) {
+    const btn = e.target.closest('.promo-btn');
+    if (!btn) return;
 
+    const promoId = parseInt(btn.dataset.promoId);
+
+    if (btn.textContent.includes('Ver Oferta')) {
+        // Al hacer clic en "Ver Oferta", se muestra el detalle
+        if (promoId === 1) {
+            alert('Detalle de la Promoción:\n\n🍔 Doble Martes de Burger\n\n¡Compra una Hamburguesa Clásica Premium, la segunda a mitad de precio! Aplicable a la de menor valor. Exclusivo para pedidos online. ¡Aprovecha la oferta!');
+        } else if (promoId === 2) {
+            alert('Detalle de la Promoción:\n\n🍟 Combo Familiar Deluxe\n\nIncluye: 4 Hamburguesas Clásicas Premium, 1 Porción de Papas Fritas Artesanales (tamaño familiar) y 2 Malteadas Vainilla Bourbon. Precio total: $145,000. ¡Disfruta en familia!');
+        }
+    } else if (btn.textContent.includes('Pedir Ahora')) {
+        // Al hacer clic en "Pedir Ahora", el combo se agrega al carrito
+        if (promoId === 2) {
+            // Combo: 4x H. Clásica (id: 1), 1x Papas (id: 2), 2x Malteadas (id: 4)
+            addToCart(1); 
+            addToCart(1);
+            addToCart(1);
+            addToCart(1);
+            addToCart(2); 
+            addToCart(4); 
+            addToCart(4);
+
+            alert('✅ Combo Familiar Deluxe agregado al carrito. ¡A disfrutar!');
+            if (!cartSidebar.classList.contains('open')) {
+                 openCart();
+            }
+        }
+    }
+}
+
+// --- LÓGICA DEL MODAL DE USUARIO (EXISTENTE) ---
+
+function openUserModal() {
+    userModal.classList.add('open');
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden'; 
+}
+
+function closeUserModal() {
+    userModal.classList.remove('open');
+    overlay.classList.remove('visible');
+    document.body.style.overflow = 'auto';
+}
+
+function switchTab(tabName) {
+    // 1. Ocultar todos los contenidos de las pestañas
+    loginFormTab.classList.add('hidden');
+    registerFormTab.classList.add('hidden');
+
+    // 2. Mostrar la pestaña activa
+    if (tabName === 'login') {
+        loginFormTab.classList.remove('hidden');
+    } else if (tabName === 'register') {
+        registerFormTab.classList.remove('hidden');
+    }
+
+    // 3. Actualizar la clase 'active' en los botones
+    tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.tab === tabName) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+// --- LÓGICA DEL MODAL DE SUGERENCIAS (Mantenido y es el punto de acceso principal) ---
+
+function openSuggestionModal() {
+    suggestionModal.classList.add('open');
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden'; 
+}
+
+function closeSuggestionModal() {
+    suggestionModal.classList.remove('open');
+    overlay.classList.remove('visible');
+    document.body.style.overflow = 'auto';
+}
+
+// --- LÓGICA DE FORMULARIOS DE AUTENTICACIÓN (Simulación) ---
+
+if (loginForm) {
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        // Lógica de inicio de sesión simulada
+        alert(`¡Bienvenido! Has iniciado sesión como: ${email}`);
+        closeUserModal();
+        loginForm.reset();
+    });
+}
+
+if (registerForm) {
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        // Lógica de registro simulada
+        alert(`¡Registro Exitoso! Bienvenido/a, ${name}. Por favor, inicia sesión con tu correo: ${email}`);
+        
+        // Cambiar a la pestaña de inicio de sesión después del registro
+        switchTab('login');
+        registerForm.reset();
+    });
+}
+
+// --- LÓGICA DE FORMULARIO DE SUGERENCIAS (Mantenido) ---
+
+if (suggestionForm) {
+    suggestionForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('suggestion-email').value;
+        const subject = document.getElementById('suggestion-subject').value;
+        const message = document.getElementById('suggestion-message').value;
+
+        alert(`✅ Sugerencia Recibida!\n\nDe: ${email}\nAsunto: ${subject}\n\nGracias por ayudarnos a mejorar.`);
+        
+        closeSuggestionModal();
+        suggestionForm.reset();
+    });
+}
+
+
+// --- LISTENERS DE EVENTOS (FINAL) ---
+
+// Carrito
 openCartBtn.addEventListener('click', openCart);
 closeCartBtn.addEventListener('click', closeCart);
-overlay.addEventListener('click', closeCart);
 
-// Listener para los dots del carrusel
+// Modal de Usuario
+if (openLoginBtnDesktop) {
+    openLoginBtnDesktop.addEventListener('click', openUserModal);
+}
+if (openLoginBtnMobile) {
+    openLoginBtnMobile.addEventListener('click', openUserModal);
+}
+closeUserModalBtn.addEventListener('click', closeUserModal);
+
+// Modal de Sugerencias (Se abre solo el modal)
+if (openSuggestionBtn) {
+    openSuggestionBtn.addEventListener('click', openSuggestionModal);
+}
+if (openSuggestionBtnMobile) { 
+    openSuggestionBtnMobile.addEventListener('click', openSuggestionModal);
+}
+if (closeSuggestionModalBtn) {
+    closeSuggestionModalBtn.addEventListener('click', closeSuggestionModal);
+}
+
+
+// Delegación para cerrar el modal o carrito al hacer clic en el overlay
+overlay.addEventListener('click', (e) => {
+    if (cartSidebar.classList.contains('open')) {
+        closeCart();
+    }
+    if (userModal.classList.contains('open')) {
+        closeUserModal();
+    }
+    // Cierre del modal de Sugerencias
+    if (suggestionModal.classList.contains('open')) {
+        closeSuggestionModal();
+    }
+});
+
+// Navegación por pestañas
+tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        switchTab(this.dataset.tab);
+    });
+});
+
+// Carrusel y Promociones
+const promotionsSlider = document.querySelector('.promotions-slider');
+if (promotionsSlider) {
+    promotionsSlider.addEventListener('click', handlePromoClick);
+}
+
 if (sliderDots) {
     sliderDots.addEventListener('click', handleDotClick);
 }
 
-// Delegación de eventos para añadir productos desde el menú
+// Delegación de eventos para añadir productos 
 productsGrid.addEventListener('click', (e) => {
     const btn = e.target.closest('.add-to-cart-btn');
     if (btn) {
         const productId = parseInt(btn.dataset.id);
         addToCart(productId);
-        // Abrir carrito al añadir si está cerrado
         if (!cartSidebar.classList.contains('open')) {
             openCart();
         }
     }
 });
 
-// Delegación de eventos para controles dentro del carrito (eliminar, aumentar/disminuir)
+// Delegación de eventos para controles del carrito 
 cartItemsList.addEventListener('click', (e) => {
     const button = e.target.closest('button');
     if (!button) return;
@@ -258,11 +447,10 @@ cartItemsList.addEventListener('click', (e) => {
     }
 });
 
-// Botón de Finalizar Pedido
+// Botón de Finalizar Pedido 
 checkoutBtn.addEventListener('click', () => {
     if (cart.length > 0) {
         alert(`🎉 ¡Pedido confirmado!\n\nTotal: ${cartTotalElement.textContent}\n\n✨ Gracias por elegir Fast Food Bites Premium!`);
-        // Simular vaciado de carrito después de la compra
         cart = [];
         renderCart();
         closeCart();
@@ -271,35 +459,16 @@ checkoutBtn.addEventListener('click', () => {
     }
 });
 
-// --- LÓGICA ADICIONAL: FORMULARIO DE CONTACTO ---
-
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Evita que la página se recargue
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        // Simulación de envío exitoso
-        alert(`¡Mensaje Enviado con Éxito!\n\nGracias, ${name}.\nNos comunicaremos contigo pronto a: ${email}\n\nDetalles:\n"${message.substring(0, 50)}..."`);
-        
-        // Limpiar el formulario después del envío
-        contactForm.reset();
-    });
-}
-
-
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inicialización de la funcionalidad existente
-    createParticles(); // Crea las partículas del fondo
+    createParticles(); 
     renderMenu();
     renderCart();
-    
-    // INICIAR EL CARRUSEL
     startSlider(); 
 
     // 2. Actualiza el año en el footer (Derechos Registrados)
     document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Iniciar siempre en la pestaña de Iniciar Sesión por defecto
+    switchTab('login');
 });
