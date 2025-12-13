@@ -50,7 +50,7 @@ body::before {
 }
 
 /* ================================================ */
-/* NAVBAR GLASSMORPHISM */
+/* NAVEGAR GLASSMORPHISM */
 /* ================================================ */
 .navbar {
     position: fixed;
@@ -400,7 +400,7 @@ body::before {
     overflow: hidden;
 }
 
-/* Fondos para las promociones (simulando imágenes) */
+/* Fondos para las promociones  */
 .promo-1 {
     background: linear-gradient(90deg, #5c007a 0%, #8b5cf6 100%);
 }
@@ -990,8 +990,7 @@ body::before {
 
 .info-content-wrapper {
     display: grid;
-    /* AJUSTE CLAVE: Como eliminamos la segunda tarjeta, esta grilla se centra y se limita el ancho 
-       para que la información no se estire demasiado en pantallas grandes. */
+    /* SOBRE NOSOTROS & CONTACTO */
     grid-template-columns: 1fr; 
     max-width: 900px; 
     margin: 0 auto; 

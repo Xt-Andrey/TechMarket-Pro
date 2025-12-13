@@ -4,7 +4,7 @@ const menuItems = [
     { id: 2, name: 'Papas Fritas Artesanales', price: 12000.00, image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop', description: 'Papas cortadas a mano, fritas en aceite premium con sal marina.' },
     { id: 3, name: 'Doble Queso Deluxe', price: 48000.00, image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop', description: 'Doble carne premium, queso madurado, pepinillos y aderezo especial.', badge: 'Nuevo' },
     { id: 4, name: 'Malteada Vainilla Bourbon', price: 18000.00, image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&h=400&fit=crop', description: 'Malteada cremosa de vainilla con un toque de sabor a bourbon.' },
-    { id: 5, name: 'Nuggets de Pollo Crujientes (x6)', price: 26000.00, image: 'https://images.unsplash.com/photo-1626075908129-9e8a5b28b746?w=600&h=400&fit=crop', description: 'Pollo de corral, empanizado en panko japonés. Pídelo con tu salsa favorita.' }, // CORREGIDA: URL de imagen
+    { id: 5, name: 'Nuggets de Pollo Crujientes ', price: 26000.00, image: 'https://assets.unileversolutions.com/recipes-v3/247909-default.jpg?im=AspectCrop=(625,469);Resize=(625,469)', description: 'Pollo de corral, empanizado en panko japonés. Pídelo con tu salsa favorita.' }, // CORREGIDA: URL de imagen
     { id: 6, name: 'Ensalada Premium con Pollo', price: 38000.00, image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop', description: 'Ensalada fresca con pollo a la parrilla, aderezo cítrico y nueces.', badge: 'Fit' }
 ];
 
@@ -98,7 +98,7 @@ function createParticles() {
     }
 }
 
-// CAMBIO: Formato de precio a COP (Pesos Colombianos) - Se usa el símbolo '$' por convención
+// Función para formatear el precio en COP (Pesos Colombianos)
 const formatPrice = (price) => `$${price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 
 // --- LÓGICA DEL MENÚ (EXISTENTE) ---
