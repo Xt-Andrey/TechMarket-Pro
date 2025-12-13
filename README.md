@@ -38,13 +38,6 @@ fast-food-bites/
 2.  Abrir el archivo `index.html` en tu navegador web.
 3.  Comienza a interactuar con el menú haciendo clic en el botón "Añadir".
 
----
-
-## 2. Archivo `index.html`
-
-Esta será la estructura principal con el menú y el carrito de compras.
-
-### 📄 Contenido de `index.html`
 
 ### DOCUMENTO 
 https://1drv.ms/w/c/910635d6f2db8e10/IQBfHSUrQjv8RrlTbGsB0FUNAaxMXw28_aCnKgBx2DAGv-I?e=6bH2lS
